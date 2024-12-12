@@ -15,15 +15,13 @@ public class SummarizationService {
 
     private final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
     
-    String apiKey = System.getenv("OPENAI_API_KEY"); // Use environment variable instead
-
-
+    String apiKey = System.getenv("OPENAI_API_KEY");
     public String summarizeText(String text) {
         RestTemplate restTemplate = new RestTemplate();
 
         // Set HTTP headers
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + OPENAI_API_KEY);
+        headers.set("Authorization", "Bearer " + apiKey);
         headers.set("Content-Type", "application/json");
 
         // Build the JSON request body

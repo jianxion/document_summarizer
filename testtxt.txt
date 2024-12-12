@@ -1,0 +1,12 @@
+The message "Buffer beyond capacity" will be printed if buffer.size() is greater than capacity. 
+
+This happens because if multiple producer threads are accessing the produce method without synchronization,
+two threads may both pass the buffer.size() >= capacity check before adding an item. This can result in both
+threads adding items simultaneously, leading the buffer size to exceed the defined capacity.
+
+"System.err.println("id " + id + ": retrieved null. error");" This message is printed if multiple consumer 
+threads are accessing consume concurrently and the buffer is empty, each thread can call buffer.poll(),
+which returns null when the buffer is empty. 
+
+I solve this problem by adding locks to both the produce and the consume method in the shared buffer, 
+ensuring that only one thread modifies the buffer at a time.

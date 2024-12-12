@@ -14,7 +14,9 @@ import java.util.Map;
 public class SummarizationService {
 
     private final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-    private final String OPENAI_API_KEY = "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"; // Replace with your OpenAI API key
+    
+    String apiKey = System.getenv("OPENAI_API_KEY"); // Use environment variable instead
+
 
     public String summarizeText(String text) {
         RestTemplate restTemplate = new RestTemplate();

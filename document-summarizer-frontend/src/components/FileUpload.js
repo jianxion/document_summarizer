@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const FileUpload = () => {
+const FileUpload = ({ onSummaryGenerated }) => {
     const [file, setFile] = useState(null);
     const [summary, setSummary] = useState("");
     const [loading, setLoading] = useState(false);
@@ -29,6 +29,7 @@ const FileUpload = () => {
                 },
             });
             setSummary(response.data);
+            onSummaryGenerated(summary);
         } catch (err) {
             setError("An error occurred while uploading the file. Please try again.");
         } finally {
